@@ -5,13 +5,13 @@ def filter_by_state(data_logs: list[dict[str, Any]], state: str = "EXECUTED") ->
     """Функция, которая возвращает новый список словарей у которых ключ state
     соответствует указанному значению"""
     list_of_banking_transactions = []
-    for i in data_logs:
-        if i["state"] == state:
-            list_of_banking_transactions.append(i)
+    for item in data_logs:
+        if item["state"] == state:
+            list_of_banking_transactions.append(item)
     return list_of_banking_transactions
 
 
-def ort_by_date(data_logs: list[dict[str, Any]], reverse: bool = True) -> list[dict]:
+def sort_by_date(data_logs: list[dict[str, Any]], reverse: bool = True) -> list[dict]:
     """Функция, которая возвращает список словарей, отсортированный по дате"""
     return sorted(data_logs, key=lambda x: x["date"], reverse=reverse)
 
@@ -23,5 +23,5 @@ data_logs = [
     {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
 ]
 
-print(ort_by_date(data_logs, reverse=True))
+print(sort_by_date(data_logs, reverse=True))
 print(filter_by_state(data_logs, state="EXECUTED"))
