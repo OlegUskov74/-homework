@@ -1,7 +1,7 @@
 import pytest
 
-from src.widget import mask_account_card
 from src.widget import get_date
+from src.widget import mask_account_card
 
 
 def test_mask_account_card_bank_account():
@@ -39,3 +39,7 @@ def test_get_date_empty_string():
     with pytest.raises(ValueError):
         assert get_date(" ")
 
+
+def test_get_date_format_error():
+    with pytest.raises(ValueError):
+        assert get_date("T02:26:18.671407")

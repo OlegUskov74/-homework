@@ -38,6 +38,8 @@ def mask_account_card(type_card_or_account_number: str) -> str:
 def get_date(my_date: str) -> str:
     """функция, которая возвращает строку с датой в формате "ДД.ММ.ГГГГ" """
     if my_date == " ":
+        raise ValueError ("Данные не введены")
+    elif len(my_date) != 26:
         raise ValueError ("Не правильно введены данные")
     date_obj = datetime.strptime(my_date, "%Y-%m-%dT%H:%M:%S.%f")
     return date_obj.strftime("%d.%m.%Y")
