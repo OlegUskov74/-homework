@@ -11,6 +11,10 @@ def test_filter_by_state_executed(data_logs, executed_logs):
 def test_filter_by_state_canceled(data_logs, canceled_logs):
     assert filter_by_state(data_logs, "CANCELED") == canceled_logs
 
+def test_filter_by_state_zero(data_logs_state_zero):
+    with pytest.raises(ValueError) as exc_info:
+        filter_by_state(data_logs_state_zero)
+    assert str(exc_info.value) == "Не хватает данных. Проверите значения по ключу 'state'"
 
 def test_filter_by_state_no_condition(data_logs_no_condition):
     with pytest.raises(KeyError):
