@@ -15,7 +15,12 @@
 3. def mask_account_card
 4. def get_date
 5. def filter_by_state
-6. def sort_by_datedef sort_by_date
+6. def sort_by_date
+
+### Тестирование
+
+Реализован пакет с тестами для всех функций в проекте
+Coverage report: 98%
 
 
 
