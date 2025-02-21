@@ -152,3 +152,7 @@ def transaction_source():
         }
     ]
 
+@pytest.fixture
+def empty_list():
+    return []
+
