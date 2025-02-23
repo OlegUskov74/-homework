@@ -1,7 +1,9 @@
 import pytest
 
 
+from src.generators import card_number_generator
 from src.generators import filter_by_currency
+from src.generators import transaction_descriptions
 
 
 def test_filter_by_currency_USD(transaction_source):
@@ -36,6 +38,41 @@ def test_filter_bu_currency_empty_list(empty_list):
     generator = filter_by_currency(empty_list)
     assert next(generator) == None
 
+
 def test_filter_bu_currency_no_code(transaction_source):
     generator = filter_by_currency(transaction_source, None)
     assert next(generator) == None
+
+
+def test_transaction_descriptions(transaction_source):
+    generator = transaction_descriptions(transaction_source)
+    assert next(generator) == "Перевод организации"
+    assert next(generator) == "Перевод со счета на счет"
+    assert next(generator) == "Перевод со счета на счет"
+    assert next(generator) == "Перевод с карты на карту"
+    assert next(generator) == "Перевод организации"
+    assert next(generator) == None
+
+
+def test_transaction_descriptions_empty_list(empty_list):
+    generator = transaction_descriptions(empty_list)
+    assert next(generator) == None
+
+
+def test_card_number_generator():
+    generator = card_number_generator(12345, 12347)
+    assert next(generator) == "0000 0000 0001 2345"
+    assert next(generator) == "0000 0000 0001 2346"
+    assert next(generator) == "0000 0000 0001 2347"
+    assert next(generator) == None
+    assert next(generator) == None
+
+def test_card_number_generator_equals_16():
+    generator = card_number_generator(1111222233334444, 1111222233334444)
+    assert next(generator) == "1111 2222 3333 4444"
+
+def test_card_number_generator_extreme_values_of_the_range():
+    with pytest.raises(ValueError) as exc_info:
+        assert next(card_number_generator(10000000000000000, 10000000000000001))
+    assert str(exc_info.value) == "Превышает допустимое значение количества элементов"
+
