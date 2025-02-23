@@ -1,5 +1,6 @@
 from typing import Any, Iterator
 
+
 transactions = [
     {
         "id": 939719570,
@@ -79,9 +80,9 @@ transactions = [
 ]
 
 
-def filter_by_currency(transactions: list[dict[str, Any]], code: str = None) -> Iterator[dict]:
+def filter_by_currency(transactions: list[dict[str, Any]], code: str = "USD") -> Iterator[dict[Any, Any]]:
     """Функция, которая принимает список словарей и возвращает итератор,
-    который поочередно выдает транзакции, где валюта операции соответствует
+     поочередно выдает транзакции, где валюта операции соответствует
     заданной (например, USD)."""
     for item in transactions:
         if item["operationAmount"]["currency"]["code"] == code:
@@ -90,10 +91,8 @@ def filter_by_currency(transactions: list[dict[str, Any]], code: str = None) -> 
         yield None
 
 
-transactions_by_code = filter_by_currency(transactions, code="USD")
 
-
-def transaction_descriptions(transactions: list[dict[str, Any]]) -> str:
+def transaction_descriptions(transactions: list[dict[str, Any]]) -> Iterator[Any]:
     """Функция, которая принимает список словарей с транзакциями
      и возвращает описание каждой операции """
     for item in transactions:
@@ -104,12 +103,12 @@ def transaction_descriptions(transactions: list[dict[str, Any]]) -> str:
         yield None
 
 
-
 descriptions = transaction_descriptions(transactions)
 
-def card_number_generator(start, stop):
+
+def card_number_generator(start: int, stop: int) -> Iterator[Any]:
     """Функция, которая может сгенерировать номера карт в заданном диапазоне"""
-    for number in range(start, stop+1):
+    for number in range(start, stop + 1):
         number_str = str(number)
         if len(number_str) < 16:
             number_x = "0" * (16 - len(number_str)) + number_str
@@ -122,13 +121,13 @@ def card_number_generator(start, stop):
     while True:
         yield None
 
-gen = card_number_generator(9999999999999997, 19999999999999997)
-#gen = card_number_generator(12345, 12347)
+
+gen = card_number_generator(12345, 12347)
 
 if __name__ == "__main__":
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-    print(next(gen))
-
+    print(next(descriptions))
+    print(next(descriptions))
+# print(next(gen))
+# print(next(gen))
+# print(next(gen))
+# print(next(gen))
