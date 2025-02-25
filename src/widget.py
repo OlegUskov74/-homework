@@ -27,14 +27,7 @@ def mask_account_card(type_card_or_account_number: str) -> str:
     return f"{card_name_string} {mask_work}"
 
 
-print(mask_account_card("Visa Classic 6831982476737658"))
-print(mask_account_card("Счет 64686473678894779589"))
-
-
 def get_date(my_date: str) -> str:
     """функция, которая возвращает строку с датой в формате "ДД.ММ.ГГГГ" """
     date_obj = datetime.strptime(my_date, "%Y-%m-%dT%H:%M:%S.%f")
     return date_obj.strftime("%d.%m.%Y")
-
-
-print(get_date("2024-03-11T02:26:18.671407"))
