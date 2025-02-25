@@ -8,7 +8,7 @@
 
 ### На данный момент в проекте:
 
-#### Список названий функций :
+#### Список названий функций:
 
 1. def get_mask_card_number
 2. get_mask_account
@@ -17,10 +17,24 @@
 5. def filter_by_state
 6. def sort_by_date
 
+
+### Добавлен новый модуль:
+     generators.py
+#### Добавлены функции:
+
+1. def filter_by_currency
+2. def transaction_descriptions
+3. def card_number_generator
+
+### Примеры использования некоторых функций:
+##### Функция card_number_generator:
+Генерирует номера карт в формате 0000 0000 0000 0000
+
 ### Тестирование
 
-Реализован пакет с тестами для всех функций в проекте
-Coverage report: 98%
+Добавлен пакет с тестами для новых функций
+
+Coverage report: 99%
 
 
 
