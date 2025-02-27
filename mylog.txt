@@ -1,0 +1,6 @@
+my_function1 okmy_function1 error: Не правильно введены данные. Inputs: (3, 2), {} 
+my_function1 okmy_function1 error: Не правильно введены данные. Inputs: (3, 2), {} 
+my_function1 okmy_function1 error: Не правильно введены данные. Inputs: (3, 2), {} 
+my_function1 okmy_function1 error: Не правильно введены данные. Inputs: (3, 2), {} 
+my_function1 okmy_function1 error: Не правильно введены данные. Inputs: (3, 2), {} 
+my_function1 okmy_function1 error: Не правильно введены данные. Inputs: (3, 2), {} 

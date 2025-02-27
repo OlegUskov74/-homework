@@ -1,10 +1,11 @@
-from typing import Any
 from functools import wraps
+from typing import Any
 
 
 def log(filename: Any = None) -> Any:
     """Декоратор, который автоматически логирует начало и конец выполнения функции, а
      также ее результаты или возникшие ошибки."""
+
     def decorator(func: Any) -> Any:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
@@ -27,15 +28,3 @@ def log(filename: Any = None) -> Any:
                 print(f"Конец работы функции {func.__name__}")
         return wrapper
     return decorator
-
-# if __name__== "__main__":
-#
-#     #@log(filename="mylog.txt")
-#     @log()
-#     def my_function(x, y):
-#         if x > 2:
-#             raise ValueError("Не правильно введены данные")
-#         return x + y
-#
-#
-#     my_function(3, 2)
