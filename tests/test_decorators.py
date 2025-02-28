@@ -2,7 +2,7 @@ from src.decorators import log
 
 
 # @log(filename="mylog.txt")
-@log()
+@log(filename=None)
 def my_function(x, y):
     """Функция для тестирования декоратора log"""
     if x > 2:

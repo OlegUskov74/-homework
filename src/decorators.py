@@ -12,11 +12,11 @@ def log(filename: Any = None) -> Any:
             print(f"Начало работы функции {func.__name__}")
             try:
                 result = func(*args, **kwargs)
-                if filename != "mylog.txt":
+                if not filename:
                     print(f"{func.__name__} ok")
-                elif filename == "mylog.txt":
+                else:
                     with open('mylog.txt', 'a') as file:
-                        file.write(f"{func.__name__} ok")
+                        file.write(f"{func.__name__} ok\n")
                 print(f"Конец работы функции {func.__name__}")
                 return result
             except Exception as e:
