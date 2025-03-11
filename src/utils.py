@@ -11,5 +11,6 @@ def get_transactions_data(path: str) -> Any:
     except (json.JSONDecodeError, FileNotFoundError):
         return []
 
+
 # if __name__ == '__main__':
 # get_transactions_data('../data/operations.json')#
