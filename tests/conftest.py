@@ -156,3 +156,44 @@ def transaction_source():
 def empty_list():
     return []
 
+
+@pytest.fixture
+def transaction_currency_converter_usd():
+    return {"id": 441945886, "operationAmount": {"amount": "100", "currency": {"code": "USD"}}}
+
+
+@pytest.fixture
+def transaction_currency_converter_rub():
+    return {"id": 441945886, "operationAmount": {"amount": "100", "currency": {"code": "RUB"}}}
+
+
+@pytest.fixture(
+    params=[
+        ([], "Транзакция должна быть словарем."),
+        (
+            {"id": 441945886, "operationAmount": {"currency": {"code": "USD"}}},
+            "Ошибка в структуре данных: отсутствуют нужные ключи.",
+        ),
+        (
+            {"id": 441945886, "operationAmount": {"amount": "100"}},
+            "Ошибка в структуре данных: отсутствуют нужные ключи.",
+        ),
+    ],
+)
+def transaction_currency_converter_keys(request):
+    return request.param
+
+@pytest.fixture(
+    params=[
+        (
+            {"id": 441945886, "operationAmount": {"currency": {"code": "USD"}}},
+            "Ошибка в структуре данных: отсутствуют нужные ключи.",
+        ),
+        (
+            {"id": 441945886, "operationAmount": {"amount": "100"}},
+            "Ошибка в структуре данных: отсутствуют нужные ключи.",
+        ),
+    ],
+)
+def transaction_currency_converter_keyss(request):
+    return request.param

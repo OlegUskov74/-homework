@@ -16,6 +16,8 @@ def currency_converter(transaction: Dict[str, Any]) -> float:
        Конвертирует сумму транзакции в рубли, если валюта — USD или EUR к рублю (RUB) через Exchange Rates Data API.
 
     """
+    if not isinstance(transaction, dict):
+        raise ValueError("Транзакция должна быть словарем.")
     try:
         currency_code = transaction["operationAmount"]["currency"]["code"]
         amount = float(transaction["operationAmount"]["amount"])
