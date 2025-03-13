@@ -19,13 +19,16 @@
 7. def filter_by_currency
 8. def transaction_descriptions
 9. def card_number_generator
+10. def log
 
 
 ### Добавлен новый модуль:
-     dekorators.py
+    utils.py
+    external_api.py
 #### Добавлены функции:
 
-1. def log
+1. get_transactions_data
+2. def currency_converter
 
 ### Примеры использования некоторых функций:
 ##### Функция card_number_generator:
@@ -33,12 +36,17 @@
 ##### Функция декоратор def log:
 Декоратор может логировать работу функции и ее результат
 как в файл, так и в консоль
+##### Функция декоратор get_transactions_data:
+Функция возвращает список словарей с данными о финансовых транзакциях
+##### Функция декоратор def currency_converter:
+Функция используется для конвертации суммы транзакции в рубли (RUB), если валюта исходной суммы — USD или EUR.
 
+Для получения актуального курса валют используется API Exchange Rates Data.
 ### Тестирование
 
 Добавлен пакет с тестами для новых функций
 
-Coverage report: 99%
+Coverage report: 97%
 
 
 
