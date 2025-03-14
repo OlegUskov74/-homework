@@ -2,7 +2,7 @@ from typing import Any
 
 
 def filter_by_state(data_logs: list[dict[str, Any]], state: str = "EXECUTED") -> list[dict]:
-    """Функция, которая возвращает новый список словарей у которых ключ state
+    """Функция, возвращает новый список словарей у которых ключ state
     соответствует указанному значению"""
     list_of_banking_transactions = []
     for item in data_logs:
