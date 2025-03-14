@@ -15,7 +15,7 @@ def log(filename: Any = None) -> Any:
                 if not filename:
                     print(f"{func.__name__} ok")
                 else:
-                    with open('mylog.txt', 'a') as file:
+                    with open('mylog.txt', 'w') as file:
                         file.write(f"{func.__name__} ok\n")
                 print(f"Конец работы функции {func.__name__}")
                 return result

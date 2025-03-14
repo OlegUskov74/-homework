@@ -20,15 +20,17 @@
 8. def transaction_descriptions
 9. def card_number_generator
 10. def log
+11. get_transactions_data
+12. def currency_converter
 
 
 ### Добавлен новый модуль:
-    utils.py
-    external_api.py
+
+    logging_config.py
+
 #### Добавлены функции:
 
-1. get_transactions_data
-2. def currency_converter
+1. setup_logger
 
 ### Примеры использования некоторых функций:
 ##### Функция card_number_generator:
@@ -40,11 +42,18 @@
 Функция возвращает список словарей с данными о финансовых транзакциях
 ##### Функция декоратор def currency_converter:
 Функция используется для конвертации суммы транзакции в рубли (RUB), если валюта исходной суммы — USD или EUR.
-
 Для получения актуального курса валют используется API Exchange Rates Data.
+##### Функция setup_logger
+Функция используется для настройки логгера
 ### Тестирование
 
-Добавлен пакет с тестами для новых функций
+## Логирование и отчеты
+
+Для генерации HTML-отчёта о покрытии выполните:
+
+```sh
+pytest --cov=src --cov-report=html
+```
 
 Coverage report: 97%
 
