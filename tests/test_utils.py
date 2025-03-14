@@ -1,3 +1,4 @@
+import json
 from unittest.mock import patch, mock_open
 
 from src.utils import get_transactions_data
@@ -18,3 +19,8 @@ def test_get_transactions_data_invalid_json(mock_json_load):
 @patch("builtins.open", side_effect=FileNotFoundError)
 def test_get_transactions_data_file_not_found(mock_file):
     assert get_transactions_data("missing_file.json") == []
+
+@patch("builtins.open", side_effect=json.JSONDecodeError)
+def test_get_transactions_data_error(mock_file):
+    assert get_transactions_data("dummy_path.json") == []
+
