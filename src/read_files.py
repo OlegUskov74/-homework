@@ -1,13 +1,13 @@
-import pandas as pd
-
 from typing import Any, Dict, Hashable, List
+
+import pandas as pd
 
 from src.logging_config import logger_read_files
 
 
 def read_from_file(path: str, method: str) -> List[Dict[Hashable, Any]]:
     """Читает файл и возвращает список словарей с данными."""
-    logger_read_files.info(f"Функция начала работать")
+    logger_read_files.info('Функция начала работать')
     try:
         transactions = pd.DataFrame()
 
@@ -19,12 +19,9 @@ def read_from_file(path: str, method: str) -> List[Dict[Hashable, Any]]:
         if transactions.empty:
             logger_read_files.warning(f"Файл {path} пуст.")
             return []
-
         logger_read_files.info(f"Файл {path} успешно загружен. Найдено {len(transactions)} записей.")
 
         return transactions.to_dict(orient="records")
-
-
 
     except FileNotFoundError:
         logger_read_files.error(f"Файл {path} не найден.")
