@@ -13,6 +13,14 @@ def test_read_file_csv_success(mock_read_csv):
     result = read_file_csv('data/transactions.csv')
     assert result == [{"id": 1, "amount": 100}, {"id": 2, "amount": 200}]
 
+@patch("src.read_files.pd.read_csv")
+def test_read_file_csv_invalid_structure(mock_read_csv):
+    mock_df = pd.DataFrame([])
+    mock_read_csv.return_value = mock_df
+
+    result = read_file_csv('data/transactions.csv')
+    assert result == []
+
 
 @patch("src.read_files.pd.read_csv", side_effect=FileNotFoundError)
 def test_read_file_csv_file_not_found(mock_file):
