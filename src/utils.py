@@ -1,8 +1,10 @@
 import json
+import os
 from typing import Any
 
 from src.logging_config import utils_logger
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def get_transactions_data(path: str) -> Any:
     """Функция возвращает список словарей с данными о финансовых транзакциях"""
@@ -22,5 +24,5 @@ def get_transactions_data(path: str) -> Any:
     return []
 
 
-if __name__ == '__main__':
-    get_transactions_data('../data/operations.json')
+# if __name__ == '__main__':
+#     get_transactions_data('../data/operations.json')

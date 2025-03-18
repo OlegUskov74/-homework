@@ -11,14 +11,12 @@ def test_filter_by_state_executed(data_logs, executed_logs):
 def test_filter_by_state_canceled(data_logs, canceled_logs):
     assert filter_by_state(data_logs, "CANCELED") == canceled_logs
 
-def test_filter_by_state_zero(data_logs_state_zero):
-    with pytest.raises(ValueError) as exc_info:
-        filter_by_state(data_logs_state_zero)
-    assert str(exc_info.value) == "Не хватает данных. Проверите значения по ключу 'state'"
 
-def test_filter_by_state_no_condition(data_logs_no_condition):
-    with pytest.raises(KeyError):
-        filter_by_state(data_logs_no_condition)
+def test_pocessing_state_negative(params_for_processing_state_negative):
+    input_data, state, expected_exception_message = params_for_processing_state_negative
+    with pytest.raises(ValueError) as exc_info:
+        filter_by_state(input_data, state)
+    assert str(exc_info.value) == expected_exception_message
 
 
 def test_sort_by_date_sorted_in_descending_order(data_logs, descending):

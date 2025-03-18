@@ -72,6 +72,23 @@ def sorted_identical_dates():
             {'id': 615064591, 'state': 'CANCELED', 'date': '2019-07-03T08:21:33.419441'},
             {'id': 939719570, 'state': 'EXECUTED', 'date': '2019-07-03T02:08:58.425572'}]
 
+@pytest.fixture(
+    params=[
+        (None, "EXECUTED", "Подаваемые данные должны быть списком словарей"),
+        (123, "EXECUTED", "Подаваемые данные должны быть списком словарей"),
+        ("string", "EXECUTED", "Подаваемые данные должны быть списком словарей"),
+        ({"id": 1, "state": "EXECUTED"}, "EXECUTED", "Подаваемые данные должны быть списком словарей"),
+        ([{"id": 1, "state": "EXECUTED"}, 123], "EXECUTED", "Каждый элемент в списке должен быть словарем"),
+        ([{"id": 1, "state": "EXECUTED"}, None], "EXECUTED", "Каждый элемент в списке должен быть словарем"),
+        ([{"id": 1, "state": "EXECUTED"}], None, "Состояние должно иметь строковое значение"),
+        ([{"id": 1, "state": "EXECUTED"}], 123, "Состояние должно иметь строковое значение"),
+        ([{"id": 1, "state": "EXECUTED"}], ["EXECUTED"], "Состояние должно иметь строковое значение"),
+    ]
+)
+def params_for_processing_state_negative(request):
+    return request.param
+
+
 @pytest.fixture
 def transaction_source():
     return [
