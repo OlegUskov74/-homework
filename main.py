@@ -2,7 +2,10 @@
 
 from src.utils import get_transactions_data
 from src.read_files import read_file_excel, read_file_csv
+from src.generators import filter_by_currency
 from src.processing import filter_by_state, sort_by_date
+
+
 
 
 DATA_PATH = {
@@ -58,8 +61,43 @@ def main() -> None:
         else:
             print(f'Статус операции "{select_status}" недоступен.\n')
             continue
-    #print(transactions)
+
+
+    choice_logical = {'да': True, 'нет': False}
+    increase_decrease = {'по возрастанию': False, 'по убыванию': True}
+
+    while True:
+        sorting_operations = input("Отсортировать операции по дате? Да/Нет\n").strip().lower()
+        if sorting_operations in choice_logical:
+            if choice_logical[sorting_operations]:
+                while True:
+                    direction_sorting = input("Отсортировать по возрастанию или по убыванию?\n").strip().lower()
+                    if direction_sorting in increase_decrease:
+                        transactions = sort_by_date(data_logs = transactions, reverse=increase_decrease[direction_sorting])
+                        break
+                    else:
+                        print("Ответ может быть только по возрастанию или по убыванию.\n")
+                        continue
+            break
+        else:
+            print("Ответ может быть только Да или Нет.")
+            continue
+
+    while True:
+        choice_curr = input("Выводить только рублевые транзакции? Да/Нет\n").strip().lower()
+        if choice_curr in choice_logical:
+            if choice_logical[choice_curr]:
+                transactions = filter_by_currency(transactions, code="RUB")
+            break
+        else:
+            print("Ответ может быть только Да или Нет.")
+            continue
+
+
+
+    print(transactions)
     return transactions
+
 
 
 if __name__ == "__main__":
