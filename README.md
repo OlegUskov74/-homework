@@ -22,15 +22,17 @@
 10. def log
 11. get_transactions_data
 12. def currency_converter
+13. setup_logger
 
 
 ### Добавлен новый модуль:
 
-    logging_config.py
+    read_files.py
 
 #### Добавлены функции:
 
-1. setup_logger
+1. read_file_excel
+2. read_file_csv
 
 ### Примеры использования некоторых функций:
 ##### Функция card_number_generator:
@@ -45,6 +47,11 @@
 Для получения актуального курса валют используется API Exchange Rates Data.
 ##### Функция setup_logger
 Функция используется для настройки логгера
+##### Функция read_file_excel
+Читает XLSX-файл
+##### Функция read_file_csv
+Читает CSV-файл
+
 ### Тестирование
 
 ## Логирование и отчеты
@@ -55,7 +62,7 @@
 pytest --cov=src --cov-report=html
 ```
 
-Coverage report: 97%
+Coverage report: 98%
 
 
 
