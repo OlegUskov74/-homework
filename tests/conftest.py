@@ -225,6 +225,61 @@ def transactions_example():
     ]
     return data
 
+@pytest.fixture
+def transactions_example_no_desc():
+    data = [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+        {
+            "id": 142264268,
+            "state": "EXECUTED",
+            "date": "2019-04-04T23:20:05.206878",
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+            "from": "Счет 19708645243227258542",
+            "to": "Счет 75651667383060284188",
+        },
+    ]
+    return data
+
+
+@pytest.fixture(params=[0, 1, 2, 3])
+def params_filter_by_currency_negative(request, transactions_example):
+    test_cases = [
+        ("", "", "Транзакции должны быть списком словарей"),
+        ([[], {}], "", "Каждая транзакция должна быть словарем"),
+        (transactions_example, 1, "Валюта операции (currency_code) должна быть строкой"),
+        (transactions_example, "", "Валюта операции (currency_code) не может быть пустой"),
+    ]
+    return test_cases[request.param]
+
+
+@pytest.fixture(params=[0, 1, 2])
+def params_transaction_descriptions_negative(request, transactions_example_no_desc):
+    test_cases = [
+        ("", "Транзакции должны быть списком словарей"),
+        ([[], {}], "Каждая транзакция должна быть словарем"),
+        (transactions_example_no_desc, "Каждая транзакция должна содержать ключ 'description'"),
+    ]
+    return test_cases[request.param]
+
+
+@pytest.fixture(
+    params=[
+        ("1", "100", "start и stop должны быть целыми числами"),
+        (0, 1, "start и stop должны быть в диапазоне от 1 до 9999999999999999"),
+        (10, 5, "start не может быть больше stop"),
+    ],
+)
+def params_card_number_generator_negative(request):
+    return request.param
+
 
 @pytest.fixture
 def empty_list():

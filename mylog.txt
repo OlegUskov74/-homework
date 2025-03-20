@@ -1,1 +1,1 @@
-filter_by_currency ok
+my_function1 error: Не правильно введены данные. Inputs: (3, 2), {} 
