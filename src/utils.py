@@ -6,9 +6,10 @@ from src.logging_config import utils_logger
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
 def get_transactions_data(path: str) -> Any:
     """Функция возвращает список словарей с данными о финансовых транзакциях"""
-    utils_logger.info(f"Функция начала работать")
+    utils_logger.info("Функция начала работать")
     try:
         with open(path, "r", encoding="utf-8") as file_operations:
             transactions_data = json.load(file_operations)
@@ -22,7 +23,6 @@ def get_transactions_data(path: str) -> Any:
         utils_logger.error(f"Ошибка обработки данных в файле {path}: {e}")
 
     return []
-
 
 # if __name__ == '__main__':
 #     get_transactions_data('../data/operations.json')

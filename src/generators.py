@@ -36,7 +36,6 @@ def filter_by_currency(transactions: List[Dict[str, Any]], currency_code: str) -
     return filtered_transactions
 
 
-
 def transaction_descriptions(transactions: List[Dict[str, Any]]) -> Iterator[Dict[str, Any]]:
     """
     Генерирует описания операций из списка транзакций.
@@ -62,7 +61,6 @@ def transaction_descriptions(transactions: List[Dict[str, Any]]) -> Iterator[Dic
 
     filtered_transactions = (item["description"] for item in transactions)
     return filtered_transactions
-
 
 
 def card_number_generator(start: int, stop: int) -> Iterator[str]:
@@ -93,5 +91,3 @@ def card_number_generator(start: int, stop: int) -> Iterator[str]:
         for num in range(start, stop + 1)
     )
     return card_numbers
-
-

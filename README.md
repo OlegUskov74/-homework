@@ -23,16 +23,18 @@
 11. get_transactions_data
 12. def currency_converter
 13. setup_logger
+14. read_file_excel
+15. read_file_csv
 
 
 ### Добавлен новый модуль:
 
-    read_files.py
+    search_operations.py
 
 #### Добавлены функции:
 
-1. read_file_excel
-2. read_file_csv
+1. search_by_string
+2. bank_transaction_counting
 
 ### Примеры использования некоторых функций:
 ##### Функция card_number_generator:
@@ -51,6 +53,13 @@
 Читает XLSX-файл
 ##### Функция read_file_csv
 Читает CSV-файл
+##### Функция search_by_string
+Функция для поиска в списке словарей операций по заданной строке
+##### Функция bank_transaction_counting
+Функция для подсчета количества банковских операций определенного типа
+
+### Функция main
+Функция main отвечает за основную логику проекта и связывает функциональности между собой.
 
 ### Тестирование
 
@@ -62,7 +71,7 @@
 pytest --cov=src --cov-report=html
 ```
 
-Coverage report: 98%
+Coverage report: 99%
 
 
 
