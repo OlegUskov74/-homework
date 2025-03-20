@@ -100,5 +100,28 @@ def main() -> None:
 
 
 
+
+
+    print("Распечатываю итоговый список транзакций...\n")
+    print(f"Всего банковских операций в выборке: {len(list(transactions))}")
+
+    for transaction in transactions:
+        date = get_date(transaction.get("date"))
+        description = transaction.get("description")
+        if choice_read == "1":
+            currency = transaction.get("operationAmount").get("currency").get("name")
+            amount = transaction.get("operationAmount").get("amount")
+        else:
+            currency = transaction.get("currency_name")
+            amount = transaction.get("amount")
+        masked_to = mask_account_card(transaction.get("to"))
+        masked_from = ""
+        if not re.match("открытие", description, flags=re.I):
+            masked_from = mask_account_card(transaction.get("from"))
+            masked_to = " -> " + masked_to
+
+        print(f"{date} {description}\n{masked_from}{masked_to}\nСумма: {amount} {currency}\n")
+
+
 if __name__ == "__main__":
     main()
