@@ -25,3 +25,4 @@ def setup_logger(name: str, log_file: str, level: int = logging.INFO) -> logging
 
 masks_logger = setup_logger("masks", "masks.log", logging.DEBUG)
 utils_logger = setup_logger("utils", "utils.log", logging.DEBUG)
+logger_read_files = setup_logger("read_files", "read_files.log", logging.DEBUG)
