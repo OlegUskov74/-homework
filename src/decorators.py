@@ -23,7 +23,7 @@ def log(filename: Any = None) -> Any:
                 if filename != "mylog.txt":
                     print(f"{func.__name__} {e}. Inputs: {args}, {kwargs}")
                 elif filename == "mylog.txt":
-                    with open('mylog.txt', 'a', encoding='utf-8') as file:
+                    with open('mylog.txt', 'w', encoding='utf-8') as file:
                         file.write(f"{func.__name__} error: {e}. Inputs: {args}, {kwargs} \n")
                 print(f"Конец работы функции {func.__name__}")
         return wrapper

@@ -1,17 +1,23 @@
 from typing import Any
 
 
-def filter_by_state(data_logs: list[dict[str, Any]], state: str = "EXECUTED") -> list[dict]:
+def filter_by_state(data_logs: list[dict[str, Any]], state: str = "EXECUTED") -> list[dict[str, Any]]:
     """Функция, возвращает новый список словарей у которых ключ state
     соответствует указанному значению"""
-    list_of_banking_transactions = []
+
+    if not isinstance(data_logs, list):
+        raise ValueError("Подаваемые данные должны быть списком словарей")
+
     for item in data_logs:
-        if item["state"] not in item["state"]:
-            raise KeyError("state")
-        elif item["state"] == " ":
-            raise ValueError("Не хватает данных. Проверите значения по ключу 'state'")
-        elif item["state"] == state:
-            list_of_banking_transactions.append(item)
+        if not isinstance(item, dict):
+            raise ValueError("Каждый элемент в списке должен быть словарем")
+
+    if not isinstance(state, str):
+        raise ValueError("Состояние должно иметь строковое значение")
+
+    list_of_banking_transactions = [item for item in data_logs if item.get("state") == state]
+    # print(list_of_banking_transactions)
+
     return list_of_banking_transactions
 
 
